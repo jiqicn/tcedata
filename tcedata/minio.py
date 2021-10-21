@@ -117,6 +117,7 @@ class Minio(object):
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
         
+        print("* Start downloading...")
         for obj_name in object_names:
             fpath = os.path.join(target_dir, obj_name)
             try:
