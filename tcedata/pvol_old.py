@@ -105,7 +105,6 @@ class Minio:
                 if obj.is_dir else obj._object_name.split("/")[-1]
                 for obj in objects]
             
-            # add the newly appeared widgets
             w_container.children += (
                 widgets.VBox([
                     w_bucket, 
