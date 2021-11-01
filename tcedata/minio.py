@@ -94,9 +94,9 @@ class Minio(object):
         object_names = []
         for obj in objects:
             if obj.is_dir:
-                obj_name = obj._object_name.split("/")[-2] + "/"
+                obj_name = obj.object_name.split("/")[-2] + "/"
             else:
-                obj_name = obj._object_name.split("/")[-1]
+                obj_name = obj.object_name.split("/")[-1]
             object_names.append(obj_name)
         return object_names
     
