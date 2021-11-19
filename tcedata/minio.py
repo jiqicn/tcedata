@@ -15,7 +15,7 @@ class Minio(object):
     """
     APIs for navigating and downloading data from the UvA-TCE Minio file server 
     """
-    def __init__(self)
+    def __init__(self):
         self.mc = None  # minio client
         self.bucket = ""  # current bucket
         self.prefix = ""  # current folder
