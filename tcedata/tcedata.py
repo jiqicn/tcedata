@@ -1,5 +1,7 @@
 """
 GUIs of downloading data from various sources
+
+Author: @jiqi
 """
 from .minio import Minio
 
@@ -7,7 +9,7 @@ import ipywidgets as widgets
 from ipyfilechooser import FileChooser
 
 
-def download_from_minio():
+def get_files_from_minio():
     """
     GUI of pvol data downloading
     """
