@@ -1,0 +1,31 @@
+package:
+  name: "tcedata"
+  version: "1.0"
+
+source:
+  git_rev: v1.0
+  git_url: https://github.com/jiqicn/tcedata
+
+requirements:
+  host:
+    - python
+    - setuptools
+  build:
+    - python
+  run:
+    - python
+    - minio
+    - pandas
+    - ipywidgets
+    - ipyfilechooser
+
+about:
+  home: https://github.com/jiqicn/tcedata
+  license: MIT
+  license_familY: MIT
+  license_file: LICENSE
+  summary: "Tools to download data from storages hosted by UvA-TCE to user workspace."
+
+extra:
+  recipe-maintainers:
+    - jiqicn
