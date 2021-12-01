@@ -21,7 +21,7 @@ conda activate <name-of-your-env>
 conda install -c jiqi tcedata
 ```
 
-When installing into JupyterLab 1 or 2, you may also need to install the labextensions if you never do it before:
+When installing into JupyterLab 1 or 2, you may also need to install the labextensions if you have never done so before:
 
 ```shell
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
