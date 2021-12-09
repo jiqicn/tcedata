@@ -1,5 +1,5 @@
 # TCEData
-Jupyter-based tools to download data from TCE-hosted storage.
+Jupyter-based tools to download data from TCE-hosted storage. For interactively learn how to use this tool, please run the [the example notebook](./examples.ipynb).
 
 **Note: if you run TCEData on a machine connected to UvA network or a virtual machine on SURF Research Cloud (SRC), you don't need VPN. Otherwise, you need to firstly connect to the UvA VPN.**
 
