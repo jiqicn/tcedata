@@ -19,6 +19,7 @@ class Minio(object):
         self.mc = None  # minio client
         self.bucket = ""  # current bucket
         self.prefix = ""  # current folder
+        self.selection = []  # selection of the file paths
         
     def login(self, endpoint, user_name, password):
         """
@@ -100,55 +101,40 @@ class Minio(object):
             object_names.append(obj_name)
         return object_names
     
-    def download_to_files(self, object_names, target_dir):
+    def save_selection(self, object_names):
         """
-        download files from a specific bucket
+        accumulate the current selection
+        
+        -parameters-
+        object_names[list]: list of file names for downloading
+        """
+        for obj_name in object_names:
+            self.selection.append(self.prefix + obj_name)
+        print("%d files saved to selection!" % len(object_names))
+    
+    def download_to_files(self, target_dir):
+        """
+        download the selected objects to a user selected folder
         
         -parameters-
         bucket[str]: name of the target bucket
-        object_names[list]: list of file names for downloading
         target_dir[str]
         """
         if target_dir is None:
             print("! Please choose the folder to keep your files.")
             return
         
-        target_dir += self.prefix.replace("/", "_")[:-1]
-        if not os.path.exists(target_dir):
-            os.makedirs(target_dir)
-        
         print("* Start downloading...")
-        for obj_name in object_names:
-            fpath = os.path.join(target_dir, obj_name)
+        for obj in self.selection:
+            fpath = os.path.join(target_dir, obj.split('/')[-1])
             try:
                 self.mc.fget_object(
                     bucket_name=self.bucket, 
-                    object_name=self.prefix+obj_name, 
+                    object_name=obj, 
                     file_path=fpath
                 )
             except:
-                print("! Fail to download %s." % obj_name)
+                print("! Fail to download %s." % obj)
                 return
             
         print("* Download successfully to %s" % target_dir)
-                
-    def buffer_to_memory(self, object_names):
-        """
-        buffer the target objects to memory
-        
-        -parameters-
-        bucket[str]: name of the target bucket
-        object_names[list]: list of file names for downloading
-        """
-        buff = []
-        for obj_name in object_names:
-            try:
-                data = self.mc.get_object(
-                    bucket_name=self.bucket, 
-                    object_name=self.prefix+obj_name
-                )
-                buff.append(io.BytesIO(data.read()))
-            except:
-                print("! Fail to buffer %s." % obj_name)
-                return
-        return buff

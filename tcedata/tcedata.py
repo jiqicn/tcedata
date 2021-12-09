@@ -34,6 +34,7 @@ def get_files_from_minio():
     w_prefix = widgets.HTML()
     w_objects = widgets.SelectMultiple(description="Objects")
     w_back = widgets.Button(description="Back")
+    w_save = widgets.Button(description="Save Selection")
     w_download = widgets.Button(description="Download")
     w_download_output = widgets.Output()
     w_container = widgets.VBox([
@@ -71,6 +72,7 @@ def get_files_from_minio():
                 w_objects,
                 widgets.HBox([
                     w_back, 
+                    w_save, 
                     w_download
                 ]), 
                 w_download_output, 
@@ -107,6 +109,16 @@ def get_files_from_minio():
         w_objects.options = mc.get_object_list()
     w_back.on_click(click_back)
     
+    def click_save(e=None):
+        """
+        save the current selection
+        """
+        with w_download_output:
+            mc.save_selection(
+                object_names = w_objects.value
+            )
+    w_save.on_click(click_save)
+    
     def click_download(e=None):
         """
         download the selected objects as file
@@ -114,7 +126,6 @@ def get_files_from_minio():
         w_download_output.clear_output()
         with w_download_output:
             mc.download_to_files(
-                object_names = w_objects.value, 
                 target_dir = w_target.value
             )
     w_download.on_click(click_download)
