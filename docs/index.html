@@ -105,7 +105,8 @@
         try {
             search = await new Promise((resolve, reject) => {
                 const script = document.createElement("script");
-                script.type = "text/javascript";
+                script.type = "application/javascript";
+                script.charset = "utf-8"
                 script.async = true;
                 script.onload = () => resolve(window.pdocSearch);
                 script.onerror = (e) => reject(e);
