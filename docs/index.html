@@ -110,7 +110,7 @@
                 script.async = true;
                 script.onload = () => resolve(window.pdocSearch);
                 script.onerror = (e) => reject(e);
-                script.src = "https://raw.githubusercontent.com/jiqicn/tcedata/main/docs/search.js";
+                script.src = "search.js";
                 document.getElementsByTagName("head")[0].appendChild(script);
             });
         } catch (e) {
