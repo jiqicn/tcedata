@@ -106,11 +106,11 @@
             search = await new Promise((resolve, reject) => {
                 const script = document.createElement("script");
                 script.type = "application/javascript";
-                script.charset = "utf-8"
+                script.charset = "utf-8";
                 script.async = true;
                 script.onload = () => resolve(window.pdocSearch);
                 script.onerror = (e) => reject(e);
-                script.src = "search.js";
+                script.src = "https://raw.githubusercontent.com/jiqicn/tcedata/main/docs/search.js";
                 document.getElementsByTagName("head")[0].appendChild(script);
             });
         } catch (e) {
